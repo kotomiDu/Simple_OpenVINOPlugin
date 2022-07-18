@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include <inference_engine.hpp>
+#include <ie/inference_engine.hpp>
 #include <opencv2/opencv.hpp>
 
 using namespace InferenceEngine;

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <cnn.hpp>
-#include <inference_engine.hpp>
+#include <ie/inference_engine.hpp>
 #include <vector>
 #include <memory>
 #include <string>
@@ -21,7 +21,7 @@ EXTERN_DLL_EXPORT bool initModel(Cnn *modelcnn, const char *input_model, const c
     modelcnn->Init(input_model, ie, device_name);
     return modelcnn->is_initialized();
 }
-EXTERN_DLL_EXPORT  float* InferModel(Cnn *modelcnn,   const char *input_image_path, int* resultVerLength) {
+EXTERN_DLL_EXPORT  float* MnistCNN(Cnn *modelcnn,   const char *input_image_path, int* resultVerLength) {
     cv::Mat image = cv::imread(input_image_path);
     auto blobs = modelcnn->Infer(image);
     
@@ -42,7 +42,7 @@ EXTERN_DLL_EXPORT  float* InferModel(Cnn *modelcnn,   const char *input_image_pa
 }
 
 int main() {
-    std::string input_model = "OV_FP16//Resnet34_3inputs_448x448_20200609.xml";
+    std::string input_model = "OV_FP16//mnist-cnn-mini.xml";
     std::string input_image_path = "InitImg.png";
     const std::string device_name = "CPU";
     float* resultVerts =new float();
